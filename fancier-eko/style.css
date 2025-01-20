@@ -1,0 +1,144 @@
+    
+    body {
+        background-color:#333333 !important;
+        color:#A9ABAB;
+        font-family: 'Open Sans',sans-serif;
+        font-size: 0.9em;
+        margin:0px;
+        user-select: none;
+        cursor: default;
+        }
+    
+    #colWrap {
+        display:flex;
+        flex-direction: column;
+        }
+    #transport {
+            flex-basis:100%;
+        }
+    #tracks {
+            flex-basis:100%;
+            }
+    @media only screen 
+      and (min-device-width: 768px) 
+      and (orientation: landscape) 
+      and (-webkit-min-device-pixel-ratio: 1) {
+        #colWrap {
+            flex-direction: row;
+            }  
+        #transport {
+            flex-basis:50%;
+            }
+        
+        }
+
+        #tracks {
+            color: #1547c4;
+            flex-basis:25%;
+            display: flex;
+            flex-flow: column wrap;
+            border-left-style:solid;
+            border-left-color: #1A1A1A;
+            max-height: 40vw;
+            align-content:flex-start;
+            }
+        .trackDiv
+        {
+            width: 25%;
+        }
+
+        #track0
+        {
+            width: 50%;
+        }
+        /* #tracks .col{
+            flex: 0 0 240px;
+            width: 240px;
+            height: 100%;
+            float: left;
+        } */
+
+        /* #tracks .trackrow1bg
+        {
+          
+            display: block;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        } */
+
+        /* #trackRow1Svg
+        {
+            display: flex;
+            flex-direction: column;
+        }
+     */
+
+        .col{
+            border-left-style: solid;
+            border-left-color: #1A1A1A;
+        }
+    
+        .optionsBarOpen{
+            background-color: #1A1A1A;
+            display: flex;
+        }
+
+        #menu .nav-link {
+            color:#686868;
+            font-size: 2vw;
+
+            border-top-left-radius: 1.375rem;
+            border-top-right-radius: 1.375rem;
+        }
+
+        #menu .nav-link.active{
+            color:#57FF86;
+            background-color: #1A1A1A;
+        }
+
+    
+
+
+    .trackRow1{
+        will-change: transform;
+        }
+    .trackRow2{
+        will-change: transform;
+        }
+    
+    .optionsBar {
+        height : 0px;
+        
+        }
+    .button:hover .mouseover {
+        visibility:visible;
+        }
+    .button:active .mouseover {
+        visibility:hidden;
+        pointer-events:all;
+        }
+    .button:active .shadow {
+        visibility: hidden;
+        }
+    .button:active .gloss {
+        visibility: hidden;
+        }
+    .button:active .active {
+        visibility: visible;
+        }
+
+    .st0 {
+        fill: none;
+        stroke: #808080;
+        stroke-miterlimit: 10;
+        }
+
+    .st3 {
+        font-family: 'Open Sans';
+        text-anchor: middle;
+        }
+
+    .st4 {
+        font-size: 10px;
+        }

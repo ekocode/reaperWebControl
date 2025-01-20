@@ -1,0 +1,231 @@
+<!doctype html>
+<html  data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <title>REAPER remote-Cookie edition</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+    <script src="main.js"></script>
+    <link href="fancier-eko/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="fancier-eko/vendors/w3data.js"></script>
+</head>
+
+<body onLoad="init();calculateScale()">
+    <div class="container-fluid g-0">
+        <div id="menu">
+            <div class="container-fluid g-0">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      <button class="nav-link active" id="nav-transport-tab" data-bs-toggle="tab" data-bs-target="#nav-transport" type="button" role="tab" aria-controls="nav-transport" aria-selected="true">TRANSPORT</button>
+                      <button class="nav-link" id="nav-console-tab" data-bs-toggle="tab" data-bs-target="#nav-console" type="button" role="tab" aria-controls="nav-console" aria-selected="false">CONSOLE</button>
+                      <button class="nav-link" id="nav-master-tab" data-bs-toggle="tab" data-bs-target="#nav-master" type="button" role="tab" aria-controls="nav-master" aria-selected="false">MASTER</button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-transport" role="tabpanel" aria-labelledby="nav-transport-tab" tabindex="0">
+                <div class="row g-0">
+                    <div class="col"> 
+                        
+                        <div style="width: 100%; background-color: #1a1a1a;">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 320 47.2" xml:space="preserve">
+                                <text id="status" onClick="prompt_seek()" ; text-anchor="middle" ; transform="matrix(1 0 0 1 155.1 27.4)" font-family="'Open Sans'" font-size="26px"></text>
+                                <text id="timeUnits" text-anchor="middle" ; transform="matrix(1 0 0 1 155.1 39.4)" fill="#545454" font-family="'Open Sans'" font-size="9px">Hours:Minutes:Seconds:Frames</text>
+                                <text id="tsNum" text-anchor="end" transform="matrix(1 0 0 1 26.3 23.3)" fill="#A8A8A8" font-family="'Open Sans'" font-size="12px">8</text>
+                                <text id="tsDen" transform="matrix(1 0 0 1 31.5625 33.1)" fill="#A8A8A8" font-family="'Open Sans'" font-size="12px">999</text>
+                                <line fill="none" stroke="#545454" stroke-miterlimit="10" x1="23.1" y1="29.5" x2="35" y2="17.6" />
+                                <g id="options" class="button" w3-include-html="fancier-eko/graphics/optionsMenuButton.html" style="display: none;"></g>
+                            </svg>
+                        </div>
+                        <div id="jogger" style="width:100%;" w3-include-html="fancier-eko/graphics/jogger.html"></div>
+                        <div id="transport" style="display: flex; flex-direction: column;">
+
+                            <div  id="transport_r1">
+                                <svg id="nextPrev" version="1.1" xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 318.9 87.8" xml:space="preserve">
+                                    <g id="nextPrevBackground.html" w3-include-html="fancier-eko/graphics/nextPrevBackground.html"></g>
+                                    <g id="regions" w3-include-html="fancier-eko/graphics/regions.html"></g>
+                                    <g id="markers" w3-include-html="fancier-eko/graphics/markers.html"></g>
+                                    <g id=nextButton class="button" onClick="wwr_req(40173)" w3-include-html="fancier-eko/graphics/nextButton.html"></g>
+                                    <g id=prevButton class="button" onClick="wwr_req(40172)" w3-include-html="fancier-eko/graphics/prevButton.html"></g>
+                                    <g id="dropMarker" class="button" visibility="hidden" onClick="wwr_req(40157)" w3-include-html="fancier-eko/graphics/dropMarker.html"></g>
+                                </svg>
+                            </div>
+                        </div>
+                    
+                    </div>
+                    <div class="col">
+                        <div  id="transport2"  style="display: flex; flex-direction: column;"></div>
+
+                            <div id="transport_r2" class="g-4">
+                                <div class="container-fluid g-4">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 303.6 107.6" xml:space="preserve">
+                                        <circle id="playLineBg" fill="#222625" cx="151.8" cy="52.4" r="52.3" />
+                                        <circle id="playLine" fill="none" stroke-dasharray="50" stroke-dashoffset="10" stroke="#00FE95" stroke-width="6" stroke-miterlimit="10" cx="151.8" cy="52.4" r="48" />
+                                        <g id="play" class="button" onClick="wwr_req(1007)" w3-include-html="fancier-eko/graphics/playButton.html"></g>
+                                        <g id="stopButton" class="button" onClick="wwr_req(40667)" w3-include-html="fancier-eko/graphics/stopButton.html"></g>
+                                        <g id="pause" class="button" onClick="wwr_req(1008)" w3-include-html="fancier-eko/graphics/pauseButton.html"></g>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="transport_r4" class="g-4">
+                                <div class="container-fluid g-4">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                            style="float: left;" x="0px" y="0px" width="33%" height="100%" viewBox="0 0 101.5 108" xml:space="preserve">
+                                        <g id="loopButton" onClick="wwr_req(1068)" w3-include-html="fancier-eko/graphics/loopButton.html"></g>
+                                    </svg>
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="66%" height="100%" viewBox="0 0 201.4 108" xml:space="preserve">
+                                        <g id="recordBackground" w3-include-html="fancier-eko/graphics/recordBackground.html"></g>
+                                        <g id="armed" class="button" w3-include-html="fancier-eko/graphics/armedButton.html"></g>
+                                        <g id="abort" class="button" style="visibility:hidden" onClick="prompt_abort()" w3-include-html="fancier-eko/graphics/abordButton.html"></g>
+                                        <g id="button-record" onClick="on_record_button()" w3-include-html="fancier-eko/graphics/recordButton.html"></g>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                    </div>
+                    <div class="row g-0">    
+                        <div id="optionsBarOpen" class="col optionsBarOpen">
+                            
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 47 47"  xml:space="preserve">                           
+                                    <g id="undoButton" class="button" onClick="wwr_req(40029)" w3-include-html="fancier-eko/graphics/undoButton.html"></g>
+                                </svg>
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 47 47"  xml:space="preserve">
+                                    <g id="redoButton" transform="translate(-45.4 0)" class="button" onClick="wwr_req(40030)" w3-include-html="fancier-eko/graphics/redoButton.html"></g>
+                                </svg>
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 47 47"  xml:space="preserve">
+                                    <g id="buttonMetro" transform="translate(-90.8 0)"  class="button" onClick="wwr_req(40364)" w3-include-html="fancier-eko/graphics/buttonMetro.html"></g>
+                                </svg>
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 47 47"  xml:space="preserve">
+                                    <g id="buttonSnap" transform="translate(-136.2 0)"  class="button" onClick="wwr_req(1157)" w3-include-html="fancier-eko/graphics/buttonSnap.html"></g>
+                                </svg>
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 47 47"  xml:space="preserve">
+                                    <g id="clipClearButton" transform="translate(-181.6 0)"  class="button" onClick="wwr_req(40527)" w3-include-html="fancier-eko/graphics/clipClearButton.html"></g>
+                                </svg>
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 47 47"  xml:space="preserve">
+                                    <g id="transitionsButton" transform="translate(-227 0)"  class="button" w3-include-html="fancier-eko/graphics/transitionsButton.html"></g>
+                                </svg>
+                         
+                            <!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"y="0px" width="100%" viewBox="0 0 274.2 47" xml:space="preserve">
+                                <polygon fill="#1A1A1A" points="274.2,0 0.4,0 0.4,47 274.2,47 274.2,0 " />
+                            </svg> -->
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 47 47"  xml:space="preserve">
+                                <g id="prerollButton" class="button" onClick="wwr_req(41819)" w3-include-html="fancier-eko/graphics/prerollButton.html"></g>
+                            </svg>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 47 47"  xml:space="preserve">
+                                <g id="unselectAllButton" class="button" onClick="wwr_req(40769)" w3-include-html="fancier-eko/graphics/unselectAllButton.html"></g>
+                            </svg>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 47 47"  xml:space="preserve">
+                                <g id="emptyButton" class="button" w3-include-html="fancier-eko/graphics/emptyButton.html"></g>
+                            </svg>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 47 47"  xml:space="preserve">
+                                <g id="emptyButton" class="button" w3-include-html="fancier-eko/graphics/emptyButton.html"></g>
+                            </svg>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 47 47"  xml:space="preserve">
+                                <g id="emptyButton" class="button" w3-include-html="fancier-eko/graphics/emptyButton.html"></g>
+                            </svg>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 47 47"  xml:space="preserve">
+                                <g id="emptyButton" class="button" w3-include-html="fancier-eko/graphics/emptyButton.html"></g>
+                            </svg>
+
+                        </div>
+                    </div>
+                    </div>
+
+            </div>
+            <div class="tab-pane fade" id="nav-console" role="tabpanel" aria-labelledby="nav-console-tab" tabindex="0">
+                <div id="trackholder">
+                    <div>
+                    </div>        
+                    <div class="trackRow2"></div>
+                </div>
+                <div id="tracks"></div>
+            </div>  
+            <div class="tab-pane fade" id="nav-master" role="tabpanel" aria-labelledby="nav-master-tab" tabindex="0">
+                <div id="track0" class="trackDiv">
+                    <div>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 320 55" xml:space="preserve">
+                            <g id="divider" w3-include-html="fancier-eko/graphics/masterDivider.html"></g>
+                            <rect id="underline" x="6" y="30" fill="#404040" width="259" height="1" />
+                            <g w3-include-html="fancier-eko/graphics/masterTrackName.html"></g>
+                            <g id="mute" w3-include-html="fancier-eko/graphics/masterMuteButton.html"></g>
+                            <g id="clip_indicator" w3-include-html="fancier-eko/graphics/masterClipDisplay.html"></g>
+                            <text id="masterDb" text-anchor="end" transform="matrix(1 0 0 1 226 46)" fill="#FFFFFF" opacity="0.5" font-family="'Open Sans'" font-size="12px">xxdB</text>
+                            <rect class="hitbox" x="49" y="1" opacity="0" width="173" height="53.9" onClick="hitbox(0)" />
+                        </svg>
+                    </div>
+        
+                    <div class="trackRow2" id="0"></div>
+                </div>
+                <div id="tracks"></div>
+            </div>      
+            <div id="actionsTab" class="tab-element"  style="display:none"></div>
+        </div>
+    </div>
+
+    <div id="backLoad" style=display:none>
+
+        <!-- TRACK ROW 1 -->
+
+        <element id=trackRow1Svg>
+            
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%"
+	            viewBox="0 1 320 53" xml:space="preserve">
+                <rect class="trackrow1bg" y="1" width="320" height="54"/>
+                <text class="trackNumber" transform="matrix(1 0 0 1 55.3999 48.2002)" fill="#FFFFFF" font-family="'Open Sans'" font-size="17px">88</text>
+                <!-- <path id="divider" fill="#333333" d="M0,0v1v27C0,13.1,12.1,1,27,1h293V0H0z" /> -->
+                <g class="recarm" w3-include-html="fancier-eko/graphics/trackRecordButton.html"></g>
+                
+                <rect id="underline" x="56" y="30" opacity="0.1" width="160" height="1" />
+                <text class="trackName" transform="matrix(1 0 0 1 57.3999 24.2002)" fill="#1A1A1A" font-family="'Open Sans'" font-size="19px">Track Name</text>
+                <g class="solo button" w3-include-html="fancier-eko/graphics/trackSoloButton.html"></g>
+                <g class="mute button" w3-include-html="fancier-eko/graphics/trackMuteButton.html"></g>
+                <g class="monitor button" w3-include-html="fancier-eko/graphics/trackMonitorButton.html"></g>
+                <polygon class="folder_icon" fill="#616666" points="88,39 85.3,36 80,36 80,39 80,48 94,48 94,39 " />
+                <g id="clip_indicator" w3-include-html="fancier-eko/graphics/trackClipDisplay.html"></g>
+                <g id="r_indicator" w3-include-html="fancier-eko/graphics/trackReceiveDisplay.html"></g>
+                <g id="s_indicator" w3-include-html="fancier-eko/graphics/trackSendDisplay.html"></g>
+                <text class="meterReadout" text-anchor="end" transform="matrix(1 0 0 1 147 46)" fill="#FFFFFF" opacity="0.75" font-family="'Open Sans'" font-size="11px">dB</text>
+                <rect class="hitbox" x="49" y="1" opacity="0" width="173" height="53.9" onClick="hitbox(event.target.id)" />
+            </svg>
+        </element>
+
+        <!-- TRACK ROW 2 -->
+
+        <element id=trackRow2Svg>
+            <svg version="1.1" class="faderSvg" display="block" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 1 320 0.0001" xml:space="preserve">
+                <rect x="0" fill="#333333" width="320" height="36" />
+                <rect id="fader_track" x="23" y="16.7" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 320 37.3333)" opacity="0.5" fill="#1A1A1A" width="274" height="4" />
+                <g class="fader" w3-include-html="fancier-eko/graphics/trackFaderButton.html"></g>
+            </svg>
+        </element>
+
+        <!-- SEND -->
+
+        <element id=trackSendSvg>
+            <svg version="1.1" display="block" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 320 0.0001" xml:space="preserve">
+                <rect class="sendPanelBg" fill="#333333" width="320" height="49" />
+                <path class="sendBg" fill="#262626" d="M244,0c-0.3,0-0.7,0-1,0v0H142h-17H27v0c-0.3,0-0.7,0-1,0C13.8,0,4,9.8,4,22s9.8,22,22,22 c0.3,0,0.7,0,1,0v0h98h17h101v0c0.3,0,0.7,0,1,0c12.2,0,22-9.8,22-22S256.2,0,244,0z" />
+                <line class="sendLine" style="pointer-events:none" fill="none" opacity="0.5" stroke="#404040" stroke-width="38" stroke-linecap="round" stroke-miterlimit="10" x1="27" y1="22" x2="130" y2="22" />
+                <text class="sendTitleText" style="pointer-events:none" transform="matrix(1 0 0 1 25 29)" fill="#A3A3A3" font-family="'Open Sans'" font-size="19px">Target Name</text>
+                <text class="sDbText" style="pointer-events:none" text-anchor="end" transform="matrix(1 0 0 1 250 27)" fill="#A3A3A3" font-family="'Open Sans'" font-size="12px">xx dB</text>
+                <circle class="sendThumb" opacity="0.5" fill="#808080" stroke="#262626" stroke-width="2" stroke-miterlimit="10" cx="26" cy="22" r="19" />
+                <g class="send_mute button" w3-include-html="fancier-eko/graphics/trackSendMuteButton.html"></g>
+            </svg>
+        </element>
+
+        results : <span id="_results" style="font-size : 0.7em">Here</span><br><br>
+
+    </div>
+
+    <script src="fancier-eko/script.js"></script>
+    
+</body>
+
+</html>
