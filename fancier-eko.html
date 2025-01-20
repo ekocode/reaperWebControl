@@ -10,8 +10,8 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
     <script src="main.js"></script>
     <link href="fancier-eko/style.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="fancier-eko/vendors/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="fancier-eko/vendors/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js" ></script>
     <script src="fancier-eko/vendors/w3data.js"></script>
 </head>
 
@@ -24,6 +24,8 @@
                       <button class="nav-link active" id="nav-transport-tab" data-bs-toggle="tab" data-bs-target="#nav-transport" type="button" role="tab" aria-controls="nav-transport" aria-selected="true">TRANSPORT</button>
                       <button class="nav-link" id="nav-console-tab" data-bs-toggle="tab" data-bs-target="#nav-console" type="button" role="tab" aria-controls="nav-console" aria-selected="false">CONSOLE</button>
                       <button class="nav-link" id="nav-master-tab" data-bs-toggle="tab" data-bs-target="#nav-master" type="button" role="tab" aria-controls="nav-master" aria-selected="false">MASTER</button>
+                      <button class="nav-link" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about" type="button" role="tab" aria-controls="nav-about" aria-selected="false">ABOUT</button>
+                    
                     </div>
                 </nav>
             </div>
@@ -141,39 +143,52 @@
             </div>
             <div class="tab-pane fade" id="nav-console" role="tabpanel" aria-labelledby="nav-console-tab" tabindex="0">
                 <div id="trackholder">
-                    <div>
-                    </div>        
+                    <div></div>        
                     <div class="trackRow2"></div>
                 </div>
                 <div id="tracks"></div>
-            </div>  
+                </div>  
             <div class="tab-pane fade" id="nav-master" role="tabpanel" aria-labelledby="nav-master-tab" tabindex="0">
                 <div id="track0" class="trackDiv">
-                    <div>
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 320 55" xml:space="preserve">
-                            <g id="divider" w3-include-html="fancier-eko/graphics/masterDivider.html"></g>
-                            <rect id="underline" x="6" y="30" fill="#404040" width="259" height="1" />
-                            <g w3-include-html="fancier-eko/graphics/masterTrackName.html"></g>
-                            <g id="mute" w3-include-html="fancier-eko/graphics/masterMuteButton.html"></g>
-                            <g id="clip_indicator" w3-include-html="fancier-eko/graphics/masterClipDisplay.html"></g>
-                            <text id="masterDb" text-anchor="end" transform="matrix(1 0 0 1 226 46)" fill="#FFFFFF" opacity="0.5" font-family="'Open Sans'" font-size="12px">xxdB</text>
-                            <rect class="hitbox" x="49" y="1" opacity="0" width="173" height="53.9" onClick="hitbox(0)" />
-                        </svg>
+                    <div class="trackRow1">
+                        <element>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 320 55" xml:space="preserve">
+                                <!-- <rect class="trackrow1bg" y="1" width="320" height="54"/> -->
+                                <!-- <text class="trackNumber" transform="matrix(1 0 0 1 55.3999 48.2002)" fill="#FFFFFF" font-family="'Open Sans'" font-size="17px">88</text> -->
+                                <g id="divider" w3-include-html="fancier-eko/graphics/masterDivider.html"></g>
+                                <!-- <g class="recarm" w3-include-html="fancier-eko/graphics/trackRecordButton.html"></g> -->
+                                <rect id="underline" x="6" y="30" fill="#404040" width="259" height="1" />
+                                <!-- <text class="trackName" transform="matrix(1 0 0 1 57.3999 24.2002)" fill="#1A1A1A" font-family="'Open Sans'" font-size="19px">Track Name</text> -->
+                                <g w3-include-html="fancier-eko/graphics/masterTrackName.html"></g>
+                                <g id="mute" w3-include-html="fancier-eko/graphics/masterMuteButton.html"></g>
+                                <g id="clip_indicator" w3-include-html="fancier-eko/graphics/masterClipDisplay.html"></g>
+                                <text id="masterDb" text-anchor="end" transform="matrix(1 0 0 1 226 46)" fill="#FFFFFF" opacity="0.5" font-family="'Open Sans'" font-size="12px">xxdB</text>
+                                <rect class="hitbox" x="49" y="1" opacity="0" width="173" height="53.9" onClick="hitbox(0)" />
+                            </svg>
+                        </element>
                     </div>
         
-                    <div class="trackRow2" id="0"></div>
+                    
                 </div>
-                <div id="tracks"></div>
-            </div>      
-            <div id="actionsTab" class="tab-element"  style="display:none"></div>
+
+                </div>      
+            <div  class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab" tabindex="0" style="text-align: center; width: 100%;">
+                <a href="https://www.instagram.com/cookieintheskyrecords/" target="_blank" style="text-align: center; width: 100%; display: block;">
+                    <img src="fancier-eko/graphics/Cookie-logo-v6.png" alt="Instagram Cookie in the sky records - Recording Studio"/>
+                </a>
+                <p class="txt-credit">
+                    An enhanced version of the Fancier Reaper Web Controle by EkoCode. Follow us on <a href="https://www.instagram.com/cookieintheskyrecords/"  target="_blank">instagram/cookieintheskyrecords/</a><br>
+                    and on github <a href="https://github.com/ekocode/reaperWebControl" target="_blank">ekocode/reaperWebControl</a>
+                </p>
+            </div>
         </div>
     </div>
 
-    <div id="backLoad" style=display:none>
+    <div id="backLoad" style="display:none">
 
         <!-- TRACK ROW 1 -->
 
-        <element id=trackRow1Svg>
+        <element id="trackRow1Svg">
             
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%"
 	            viewBox="0 1 320 53" xml:space="preserve">
@@ -198,7 +213,7 @@
 
         <!-- TRACK ROW 2 -->
 
-        <element id=trackRow2Svg>
+        <element id="trackRow2Svg">
             <svg version="1.1" class="faderSvg" display="block" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 1 320 0.0001" xml:space="preserve">
                 <rect x="0" fill="#333333" width="320" height="36" />
                 <rect id="fader_track" x="23" y="16.7" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 320 37.3333)" opacity="0.5" fill="#1A1A1A" width="274" height="4" />
@@ -208,7 +223,7 @@
 
         <!-- SEND -->
 
-        <element id=trackSendSvg>
+        <element id="trackSendSvg">
             <svg version="1.1" display="block" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 320 0.0001" xml:space="preserve">
                 <rect class="sendPanelBg" fill="#333333" width="320" height="49" />
                 <path class="sendBg" fill="#262626" d="M244,0c-0.3,0-0.7,0-1,0v0H142h-17H27v0c-0.3,0-0.7,0-1,0C13.8,0,4,9.8,4,22s9.8,22,22,22 c0.3,0,0.7,0,1,0v0h98h17h101v0c0.3,0,0.7,0,1,0c12.2,0,22-9.8,22-22S256.2,0,244,0z" />

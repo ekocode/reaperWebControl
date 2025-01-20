@@ -23,7 +23,7 @@ function startScript() {
     
 }
 
-w3IncludeHTML(startScript);
+
 
 var last_transport_state = -1, mouseDown = 0, last_time_str = "",
     last_metronome = false, nTrack = 0, last_repeat = false, snapState = 0, prerollState =0,
@@ -45,6 +45,7 @@ var requestAnimationFrame = window.requestAnimationFrame ||
     window.msRequestAnimationFrame;
 
 trackHeightsAr[0] = 0;
+w3IncludeHTML(startScript);
 
 function openTab(tabId) {
     var i;
@@ -555,6 +556,7 @@ function wwr_onreply(results) {
                     var backLoaded = document.getElementById("backLoad");
                     var allTracksDiv = document.getElementById("tracks");
                     var trackFound = document.getElementById("track" + tok[1]);
+                    
 
                     if (!trackFound) {
                         var trackDiv = document.createElement("div");
@@ -578,12 +580,30 @@ function wwr_onreply(results) {
                     }
 
                     else {
+
+                        // console.log("found : track" + tok[1])
                         if (backLoaded != null && backLoaded.nextSibling != null) {
                             var cloneTrackRow1 = document.getElementById("trackRow1Svg").cloneNode(true);
                             var cloneTrackRow2 = document.getElementById("trackRow2Svg").cloneNode(true);
                             var cloneTrackSend = document.getElementById("trackSendSvg").cloneNode(true);
 
+
                             if (idx == 0) { //master track stuff
+
+                                var masterTrackContent = document.getElementById("track0");
+                                var masterTrackRow2Content = document.createElement("div");
+                                masterTrackRow2Content.className = ("trackRow2");
+                                masterTrackRow2Content.id = tok[1];
+                                masterTrackContent.appendChild(masterTrackRow2Content);
+                                // var masterTrackRow2Content = masterTrackContent.childNodes[3];
+                                // console.log(masterTrackRow2Content)
+                                if (!masterTrackRow2Content.innerHTML) {
+                                    masterTrackRow2Content.appendChild(cloneTrackRow2);
+                                    
+                                    var trackSendsDiv = document.createElement("div");
+                                    trackSendsDiv.id = ("sendsTrack0");
+                                    masterTrackContent.appendChild(trackSendsDiv);
+                                }
 
                                 masterMuteOffButton = document.getElementById("master-mute-off");
                                 masterMuteOnButton = document.getElementById("master-mute-on");
@@ -597,14 +617,7 @@ function wwr_onreply(results) {
                                 masterMeterReadout = document.getElementById("masterDb");
                                 masterMeterReadout.textContent = (mkvolstr(tok[4]));
 
-                                var masterTrackContent = document.getElementById("track0");
-                                var masterTrackRow2Content = masterTrackContent.childNodes[3];
-                                if (!masterTrackRow2Content.innerHTML) {
-                                    masterTrackRow2Content.appendChild(cloneTrackRow2);
-                                    var trackSendsDiv = document.createElement("div");
-                                    trackSendsDiv.id = ("sendsTrack0");
-                                    masterTrackContent.appendChild(trackSendsDiv);
-                                }
+                                
 
                                 var volThumb = masterTrackRow2Content.getElementsByClassName("fader")[0];
                                 if (faderConAr[0] != 1) {
@@ -622,7 +635,8 @@ function wwr_onreply(results) {
                             }
 
                             if (idx > 0) { //normal track stuff
-
+                                // console.log(document.getElementById("track" + idx))
+                                // console.log(trackRow1Content)
                                 var trackRow1Content = document.getElementById("track" + idx).childNodes[0];
                                 if (!trackRow1Content.innerHTML) {
                                     trackRow1Content.appendChild(cloneTrackRow1);
@@ -630,6 +644,7 @@ function wwr_onreply(results) {
                                 }
 
                                 var trackRow2Content = document.getElementById("track" + idx).childNodes[1];
+                                // console.log(trackRow2Content)
                                 if (!trackRow2Content.innerHTML) {
                                     trackRow2Content.appendChild(cloneTrackRow2);
                                 }
@@ -640,7 +655,9 @@ function wwr_onreply(results) {
                                     trackBg.style.fill = customTrackColour;
                                     trackColoursAr[idx] = tok[1];
                                 }
-                                else { trackBg.style.fill = "#9DA5A5"; }
+                                else { 
+                                    
+                                    trackBg.style.fill = "#9DA5A5"; }
 
                                 if (tok[1] != trackNumbersAr[idx]) {
                                     trackNumber = trackRow1Content.firstChild.getElementsByClassName("trackNumber")[0];
@@ -653,7 +670,7 @@ function wwr_onreply(results) {
                                     trackText.textContent = tok[2];
                                     trackNamesAr[idx] = tok[2];
                                 }
-
+                                
                                 trackRow1Content.firstChild.getElementsByClassName("recarm")[0].onmousedown = mouseDownEventHandler("SET/TRACK/" + idx + "/RECARM/-1;TRACK/" + idx);
                                 trackRow1Content.firstChild.getElementsByClassName("mute")[0].onmousedown = mouseDownEventHandler("SET/TRACK/" + tok[1] + "/MUTE/-1;TRACK/" + tok[1]);
                                 trackRow1Content.firstChild.getElementsByClassName("solo")[0].onmousedown = mouseDownEventHandler("SET/TRACK/" + idx + "/SOLO/-1;TRACK/" + idx);
