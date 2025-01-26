@@ -182,8 +182,10 @@ function wwr_onreply(results) {
     var ar = results.split("\n");
     for (var x = 0; x < ar.length; x++) {
         var tok = ar[x].split("\t");
+        
         if (tok.length > 0) switch (tok[0]) {
             case "TRANSPORT":
+                
                 if (tok.length > 4) {
                     var backLoaded = document.getElementById("backLoad");
                     if (backLoaded != null) {
@@ -288,6 +290,7 @@ function wwr_onreply(results) {
                 }
                 break;
             case "BEATPOS":
+                
                 var playLine = document.querySelector('#playLine');
                 if (tok.length > 5 && playLine) {
                     var playLineCirc = 301.1;
@@ -552,6 +555,7 @@ function wwr_onreply(results) {
 
             case "TRACK":
                 idx = parseInt(tok[1]);
+                
                 if (tok.length > 5) {
                     var backLoaded = document.getElementById("backLoad");
                     var allTracksDiv = document.getElementById("tracks");
@@ -587,9 +591,10 @@ function wwr_onreply(results) {
                             var cloneTrackRow2 = document.getElementById("trackRow2Svg").cloneNode(true);
                             var cloneTrackSend = document.getElementById("trackSendSvg").cloneNode(true);
 
-
                             if (idx == 0) { //master track stuff
 
+
+                                
                                 var masterTrackContent = document.getElementById("track0");
                                 var masterTrackRow2Content = document.createElement("div");
                                 masterTrackRow2Content.className = ("trackRow2");
@@ -637,6 +642,23 @@ function wwr_onreply(results) {
                             if (idx > 0) { //normal track stuff
                                 // console.log(document.getElementById("track" + idx))
                                 // console.log(trackRow1Content)
+                               
+                                 /**
+                                 * 0: TRACK
+                                 * 1: tracknumber
+                                 * 2: trackname 
+                                 * 3: trackflags 
+                                 * 4: volume
+                                 * 5: pan
+                                 * 6: clip
+                                 * 7: last_meter_pos 
+                                 * 8: width pan2
+                                 * 9: panmode 
+                                 * 10: sendcnt 
+                                 * 11: recvcnt
+                                 * 12: hwoutcnt 
+                                 * 13: color 0xaarrggbb
+                                 */
                                 var trackRow1Content = document.getElementById("track" + idx).childNodes[0];
                                 if (!trackRow1Content.innerHTML) {
                                     trackRow1Content.appendChild(cloneTrackRow1);

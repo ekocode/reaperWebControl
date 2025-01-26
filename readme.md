@@ -11,9 +11,10 @@ Todo
 - add actions : 
 	- unselect all *DONE*
 	- preroll *DONE*
-	- set loop region
-	- goto loop start
-	- set loop start
-	- set loop end
+	- set loop region *CANCELED*
+	- goto loop start *CANCELED*
+	- set loop start *CANCELED*
+	- set loop end *CANCELED*
 - vertical console *CANCELED*
 - timeline ? *CANCELED*
+- Tempo display *CANCELED*

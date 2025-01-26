@@ -39,9 +39,10 @@
             flex-flow: column wrap;
             border-left-style:solid;
             border-left-color: #1A1A1A;
-            max-height: 40vw;
+            max-height: 34vw;
             align-content:flex-start;
             }
+
         .trackDiv
         {
             width: 25%;
@@ -78,18 +79,25 @@
             border-left-style: solid;
             border-left-color: #1A1A1A;
         }
+
     
         .optionsBarOpen{
             background-color: #1A1A1A;
             display: flex;
+            flex-flow: column wrap;
+            flex-basis:50%;
+            flex-direction: row;
+        }
+        .optionsBarOpen svg{
+            width: 50%;
         }
 
         #menu .nav-link {
             color:#686868;
             font-size: 2vw;
 
-            border-top-left-radius: 1.375rem;
-            border-top-right-radius: 1.375rem;
+            border-top-left-radius: 0.5em;
+            border-top-right-radius: 0.5em;
         }
 
         #menu .nav-link.active{
@@ -100,6 +108,9 @@
     .txt-credit{
         color:#686868;
         font-size: 1vw;
+    }
+    #nav-about img{
+        width: 80vh;
     }
 
 
